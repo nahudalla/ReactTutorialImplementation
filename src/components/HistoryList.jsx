@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function HistoryList(props) {
-  const { cellValuesHistory, stepNumber, reverseOrder } = props
+export default function HistoryList (props) {
+  const { cellValuesHistory, reverseOrder } = props
 
   const items = []
 
@@ -18,7 +18,7 @@ export default function HistoryList(props) {
   )
 }
 
-function generateHistoryListItem(index, { cellValuesHistory, stepNumber, onClick }) {
+function generateHistoryListItem (index, { cellValuesHistory, stepNumber, onClick }) {
   const { row, column, player } = index && calculateHistoryDifference(cellValuesHistory[index], cellValuesHistory[index - 1])
   const selected = index === stepNumber
   return (
@@ -33,7 +33,7 @@ function generateHistoryListItem(index, { cellValuesHistory, stepNumber, onClick
   )
 }
 
-function calculateHistoryDifference(stateA, stateB) {
+function calculateHistoryDifference (stateA, stateB) {
   for (let i = 0; i < stateA.length; ++i) {
     if (stateA[i] !== stateB[i]) {
       const row = Math.floor(i / 3)
@@ -46,7 +46,7 @@ function calculateHistoryDifference(stateA, stateB) {
   }
 }
 
-function HistoryListItem(props) {
+function HistoryListItem (props) {
   const { index, selected } = props
   const onClick = () => props.onClick(index)
 
@@ -64,7 +64,7 @@ function HistoryListItem(props) {
   )
 }
 
-function generateTextForHistoryListItem({ index, row, column, player }) {
+function generateTextForHistoryListItem ({ index, row, column, player }) {
   if (index === 0) {
     return `Go to game start`
   } else {
