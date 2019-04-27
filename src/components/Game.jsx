@@ -1,10 +1,10 @@
-import { useState, default as React } from 'react'
+import React, { useState } from 'react'
 import Board from './Board'
 import InfoPanel from './InfoPanel'
 
-const PLAYER_1_CHAR = 'X';
-const PLAYER_2_CHAR = 'O';
-const INITIAL_CELL_VALUES = Array(9).fill(null);
+const PLAYER_1_CHAR = 'X'
+const PLAYER_2_CHAR = 'O'
+const INITIAL_CELL_VALUES = Array(9).fill(null)
 
 const MAIN_DIAGONAL = [0, 4, 8]
 const SECOND_DIAGONAL = [2, 4, 6]
@@ -20,7 +20,7 @@ const HORIZONTAL_LINES = [
 ]
 const WINNER_LINES = [MAIN_DIAGONAL, SECOND_DIAGONAL, ...VERTICAL_LINES, ...HORIZONTAL_LINES]
 
-export default function Game(props) {
+export default function Game (props) {
   const [cellValuesHistory, setCellValuesHistory] = useState([INITIAL_CELL_VALUES])
   const [stepNumber, setStepNumber] = useState(0)
 
@@ -30,7 +30,7 @@ export default function Game(props) {
   const currentPlayer = getCurrentPlayer(stepNumber)
 
   return (
-    <div className="game">
+    <div className='game'>
       <Board
         cellValues={cellValues}
         winnerLineIndexes={winnerLineIndexes}
@@ -45,11 +45,11 @@ export default function Game(props) {
         cellValuesHistory={cellValuesHistory}
       />
     </div>
-  );
+  )
 
-  function handleBoardClick(i) {
+  function handleBoardClick (i) {
     if (winnerLineIndexes || cellValues[i]) {
-      return;
+      return
     }
 
     const newCellValues = cellValues.slice()
@@ -61,20 +61,20 @@ export default function Game(props) {
   }
 }
 
-function getCurrentPlayer(stepNumber) {
+function getCurrentPlayer (stepNumber) {
   return (stepNumber % 2 === 0) ? PLAYER_1_CHAR : PLAYER_2_CHAR
 }
 
-function calculateWinnerLine(cellValues) {
+function calculateWinnerLine (cellValues) {
   for (let line of WINNER_LINES) {
     if (isWinnerLine(cellValues, line)) {
-      return line;
+      return line
     }
   }
-  return null;
+  return null
 }
 
-function isWinnerLine(cellValues, line) {
+function isWinnerLine (cellValues, line) {
   const [cellA, cellB, cellC] = line
 
   if (cellValues[cellA] && cellValues[cellA] === cellValues[cellB] && cellValues[cellA] === cellValues[cellC]) {
